@@ -48,26 +48,26 @@ do
 		-b ${TEMP}/${BASE%bam}pos.bedgraph -wo -sorted \
 		-g $GENOME_SIZES > ${TEMP}/${BASE}_exon_pos.intersect
 	../../Scripts/coverage.py ${TEMP}/${BASE}_exon_pos.intersect > \
-		intersect/${BASE%.bam}_exon_pos.tsv;
+		intersect/${BASE%.bam}_exon_pos.csv;
 	rm ${TEMP}/${BASE}_exon_pos.intersect;
 	bedtools intersect -a $GTF_NO_EXON_POS \
 		-b ${TEMP}/${BASE%bam}neg.bedgraph -wo -sorted \
 		-g $GENOME_SIZES > ${TEMP}/${BASE}_exon_neg.intersect
 	../../Scripts/coverage.py ${TEMP}/${BASE}_exon_neg.intersect > \
-	intersect/${BASE%.bam}_exon_neg.tsv;
+	intersect/${BASE%.bam}_exon_neg.csv;
 	rm ${TEMP}/${BASE}_exon_neg.intersect;
 
 	bedtools intersect -a $GTF_INTRON_NEG \
 		-b ${TEMP}/${BASE%bam}pos.bedgraph -wo -sorted \
 		-g $GENOME_SIZES > ${TEMP}/${BASE}_intron_pos.intersect
 	../../Scripts/coverage.py ${TEMP}/${BASE}_intron_pos.intersect > \
-		intersect/${BASE%.bam}_intron_pos.tsv;
+		intersect/${BASE%.bam}_intron_pos.csv;
 	rm ${TEMP}/${BASE}_intron_pos.intersect;
 	bedtools intersect -a $GTF_INTRON_POS \
 		-b ${TEMP}/${BASE%bam}neg.bedgraph -wo -sorted \
 		-g $GENOME_SIZES > ${TEMP}/${BASE}_intron_neg.intersect
 	../../Scripts/coverage.py ${TEMP}/${BASE}_intron_neg.intersect > \
-		intersect/${BASE%.bam}_intron_neg.tsv;
+		intersect/${BASE%.bam}_intron_neg.csv;
 	rm ${TEMP}/${BASE}_intron_neg.intersect;
 
 	rm ${TEMP}/${BASE%bam}pos.bedgraph ${TEMP}/${BASE%bam}neg.bedgraph;
