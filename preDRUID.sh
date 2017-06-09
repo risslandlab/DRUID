@@ -3,10 +3,11 @@
 # Quantify reads mappings to different genomic features (exons, introns) using
 #   the genomecov and intersect tools of bedtools and in-house python script
 #   to summarise results.
-# This script assumes the existence of three variables prior to running:
-#    GTF_NO_EXON - contains the path to a gtf with exon coordinates
-#    GTF_INTRON  - contains the path to a gtf with intron coordinates
-#    BAM_PATH    - contains the path to a folder with bam files
+# This script assumes the existence of four variables prior to running:
+#    GTF_NO_EXON  - contains the path to a gtf with exon coordinates
+#    GTF_INTRON   - contains the path to a gtf with intron coordinates
+#    GENOME_SIZES - contains the path to a table of chromosomes and their sizes
+#    BAM_PATH     - contains the path to a folder with bam files
 # This script can be easily modified to take advantage of tools such as gnu
 #   parallel to speed up processing.
 
