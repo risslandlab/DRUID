@@ -28,4 +28,4 @@ standard pipeline based around [STAR](https://github.com/alexdobin/STAR) and
 [HTSeq](http://www-huber.embl.de/HTSeq/doc/overview.html).
 
 ## References
-* TBA
+* Lugowski, A., Nicholson B., Rissland, O.S. 2017. “DRUID: A pipeline for reproducible transcriptome-wide measurements of mRNA stability”. bioRxiv doi: https://doi.org/10.1101/149195
