@@ -29,7 +29,7 @@ cat $GTF_INTRON | grep -P '\s\+\s' | sort -k1,1 -k4,4n > $GTF_INTRON_POS;
 mkdir intersect;
 
 # for each BAM file that we have
-for BAM in ${BAM_PATH}/*.bam;
+for BAM in ${BAM_PATH}/*bam;
 do 
   BASE=$(basename $BAM);
 

@@ -9,7 +9,7 @@ parallel --no-notice \
 --idattr=gene_id \
 --mode=intersection-strict \
 --quiet \
-BAM/{} \
+$BAM_PATH/{} \
 $GTF_EXON > \
 ./htseq_exons_introns/{/.}_exon.tsv; \
 htseq-count \
@@ -21,7 +21,7 @@ htseq-count \
 --idattr=gene_id \
 --mode=union \
 --quiet \
-BAM/{} \
+$BAM_PATH/{} \
 $GTF_INTRON > \
 ./htseq_exons_introns/{/.}_intron.tsv;' \
-::: `ls BAM | grep ".bam$"`
+::: `ls $BAM_PATH | grep ".bam$"`
