@@ -227,7 +227,7 @@ ExtractAndMerge <- function(
   #     tables, e.g positive strand exonic coverage. Reported properties include
   #     mean base coverage and associated standard deviation, feature size, and 
   #     proportion of bases coverage by at least one read.
-  files <- lapply(tsv, read.csv)
+  files <- lapply(csvs, read.csv)
   table.names <- colnames(files[[1]])
   a <- files[[1 + offset]]
   colnames(a)[-1:-5] <- sapply(
@@ -389,13 +389,13 @@ csvs <- csvs[c(5:8, 13:24, 1:4, 9:12, 25:28)]
 
 # We will read in preDRUID results for exonic features for completeness, but we
 #   wont actually be using them.
-exons.negative.strand <- ExtractAndMerge(files, 4, 0)
-exons.positive.strand <- ExtractAndMerge(files, 4, 1)
+exons.negative.strand <- ExtractAndMerge(csvs, 4, 0)
+exons.positive.strand <- ExtractAndMerge(csvs, 4, 1)
 exons.all <- rbind(exons.negative.strand, exons.positive.strand)
 
 # Read in and merge the preDRUID results for introns
-introns.negative.strand <- ExtractAndMerge(files, 4, 2)
-introns.positive.strand <- ExtractAndMerge(files, 4, 3)
+introns.negative.strand <- ExtractAndMerge(csvs, 4, 2)
+introns.positive.strand <- ExtractAndMerge(csvs, 4, 3)
 introns.all <- rbind(introns.negative.strand, introns.positive.strand)
 
 # Calculate half-lives
