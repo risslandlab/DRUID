@@ -26,7 +26,7 @@ with open(sys.argv[1], 'rb') as tsvin:
 	organism = m.group(2)
 	
 	# extract gene and transcript id and exon number
-	m = re.search('gene_id "([^"]+)[a-z]"; transcript_id "[^"]+"; exon_number \d+; exon_id "([^.]+)\.(\d+)[a-z]"; gene_name "[^"]+"', row[8])
+	m = re.search('gene_id "([^"]+)[a-z]"; transcript_id "[^"]+"; exon_number \d+; exon_id "([^"]+)\.(\d+)[a-z]"; gene_name "[^"]+"', row[8])
 	gene = m.group(1)
 	transcript = m.group(2)
 	exon = m.group(3)
