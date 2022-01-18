@@ -289,7 +289,7 @@ DRUID <- function(x, introns, data, lib.sizes, path, filterIntrons = TRUE,
     byrow = TRUE,
     ncol = length(lib.sizes)
   )
-  introns.mean.filt.norm <- introns.mean.filt / lib.sizes
+  introns.mean.filt.norm <- introns.mean.filt / lib.sizes.matrix
   maxes <- apply(introns.mean.filt.norm, 1, max)
   maxes.matrix <- matrix(rep(maxes, length(maxes)), ncol = length(maxes))
   introns.mean.filt.norm <- introns.mean.filt.norm / maxes.matrix
@@ -355,72 +355,3 @@ DRUID <- function(x, introns, data, lib.sizes, path, filterIntrons = TRUE,
     x, data, norm, HalfLives4SU, 0
   )
 }
-
-################################################################################
-#                                   Example                                    #
-################################################################################
-
-# The code below has been simplified as much as possible to focus only on the 
-#   required steps to properly run DRUID. The required input data is described 
-#   verbally, rather than with specific commands, as different users may have 
-#   varying means of generating the same data.
-
-
-# Gathering required data.
-
-# Table of exonic read counts. Row names are genes and column names are
-#   the different samples (time points).
-data.reads <- read.csv()
-
-# Table of spike-in read counts (not required for DRUID), similar in
-#   appearance to the previous table.
-spike.reads <- read.csv()
-
-# Vector of library sizes e.g. can be obtained from STAR log files.
-library.sizes <- read.csv()
-
-# Read preDruid results, hopefully the only csvs present in the directory
-csvs <- dir("path/to/intersect", pattern = "csv$", full.names = TRUE)  
-# Reorder the files so that they are in increasing time order, there are four
-#   files per timepoint, positive and negative strand for both exons and
-#   introns. The order of these four files should be consistent for each time-
-#   point.
-csvs <- csvs[c(5:8, 13:24, 1:4, 9:12, 25:28)] 
-
-# We will read in preDRUID results for exonic features for completeness, but we
-#   wont actually be using them.
-exons.negative.strand <- ExtractAndMerge(csvs, 4, 0)
-exons.positive.strand <- ExtractAndMerge(csvs, 4, 1)
-exons.all <- rbind(exons.negative.strand, exons.positive.strand)
-
-# Read in and merge the preDRUID results for introns
-introns.negative.strand <- ExtractAndMerge(csvs, 4, 2)
-introns.positive.strand <- ExtractAndMerge(csvs, 4, 3)
-introns.all <- rbind(introns.negative.strand, introns.positive.strand)
-
-# Calculate half-lives
-
-# Standard spike-in method
-times <- c(1, 2, 4, 8, 12, 24)  # timepoints at which samples were collected
-data <- data.reads
-norm <- colSums(spike.reads)
-
-half.lives.spikeins <- LeaveOneOut(times, data, norm, HalfLives4SU)
-
-# DRUID
-times <- c(1, 2, 4, 8, 12, 24)  # timepoints at which samples were collected
-data <- data.reads
-# preDRUID results will contain information about reads mapping to all 
-#   organisms / spike-ins. We need to specify that we want only those
-#   corresponding to the organism under study.
-introns.human <- introns.all[introns.all$organism == "h", ]
-half.lives.DRUID <- DRUID(
-  x = times,
-  introns = introns.human,
-  data = data,
-  lib.sizes = library.sizes,
-  path = "DRUID.replicate.1",
-  kmeans.seed = 42
-)
-
-# Downstream analysis ...
