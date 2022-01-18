@@ -86,5 +86,6 @@ however, the [Wiki](https://github.com/risslandlab/DRUID/wiki) outlines our
 standard pipeline based around [STAR](https://github.com/alexdobin/STAR) and 
 [HTSeq](http://www-huber.embl.de/HTSeq/doc/overview.html).
 
-## References
-* Lugowski, A., Nicholson B., Rissland, O.S. 2017. “DRUID: A pipeline for reproducible transcriptome-wide measurements of mRNA stability”. bioRxiv doi: https://doi.org/10.1101/149195
+## Reference
+
+* Lugowski A, Nicholson B, Rissland OS. DRUID: a pipeline for transcriptome-wide measurements of mRNA stability. RNA. 2018 May;24(5):623-632. doi: 10.1261/rna.062877.117. Epub 2018 Feb 8. PMID: 29438994; PMCID: PMC5900561.
