@@ -289,7 +289,7 @@ DRUID <- function(x, introns, data, lib.sizes, path, filterIntrons = TRUE,
     byrow = TRUE,
     ncol = length(lib.sizes)
   )
-  introns.mean.filt.norm <- introns.mean.filt / lib.sizes
+  introns.mean.filt.norm <- introns.mean.filt / lib.sizes.matrix
   maxes <- apply(introns.mean.filt.norm, 1, max)
   maxes.matrix <- matrix(rep(maxes, length(maxes)), ncol = length(maxes))
   introns.mean.filt.norm <- introns.mean.filt.norm / maxes.matrix
